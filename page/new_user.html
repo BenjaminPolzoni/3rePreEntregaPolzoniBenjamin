@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Pagina2</title>
+</head>
+<body class="body">    
+    <nav class="barra_de_navegacion">
+        <h1 class="titulo" name="tituloPrincipal" id="titulo">hola buenas </h1>
+    </nav>
+    <main>
+        <form action="" class="contenedorLogin">
+            <h2 class="login_titulo">Register</h2>
+            <div class="entradaslogin">
+                <input type="text" class="inputs" id="newUserName" placeholder="Nombre">
+            </div>
+            <div class="entradaslogin">
+                <input type="email" class="inputs" id="newUserMail" placeholder="Mail">
+            </div>
+            <div class="entradaslogin">
+                <input type="password" class="inputs" id="newUserPassword"placeholder="Contraseña">
+            </div>
+            <div class="entradaslogin">
+                <input type="number" class="inputs" id="newUserAge" placeholder="Edad">
+            </div>
+            <div class="entradaslogin">
+                <h3 class="direccion_titulo">Direccion (opcional)</h3>
+                <input type="text" class="inputs inputs_dire" id="newUserAltura"placeholder="Altura">
+                <input type="text" class="inputs inputs_dire" id="newUserCalle"placeholder="Calle">
+                <input type="text" class="inputs inputs_dire" id="newUserCP"placeholder="Codigo Postal">
+            </div>
+            <button type="button" class="boton botonRegister">Crear</button>
+            <a href="../index.html" class="nuevaCuenta">Logearte</a>
+    
+        </form>
+    </main>
+    <script src="../js/baseDeDatos.js" type="module"></script>
+    <script src="../js/register.js" type="module"></script>
+    
+</body>
+</html>
