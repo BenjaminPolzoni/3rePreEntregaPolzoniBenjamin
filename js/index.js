@@ -1,8 +1,13 @@
 
-const hayUser = localStorage.getItem('UserLog')
+const hayUser = JSON.parse(localStorage.getItem('UserLog'))
 
 if(hayUser){
-    console.log(hayUser.nombre)
-}else{
+    //Muestro nombre de usuario si ya esta registrado
+    const nombreDelUsuario = document.querySelector('.NombreUsuario')
+    nombreDelUsuario.innerText = 'Binvenido '+ hayUser.nombre
+
+}else{// Lo redirijo a la pagina donde se debera registrar de nuevo
     window.location.href = './page/loginUser.html'
 }
+
+

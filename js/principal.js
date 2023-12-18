@@ -48,15 +48,19 @@ boton.addEventListener("click", ()=>{
     // llamo a la base de datos del local storage
     const baseDeDatos = JSON.parse(localStorage.getItem('BaseDeDatos'))
 
-    console.log(baseDeDatos)
-    const userExist = baseDeDatos.some((element) =>{ return (element.nombre === usuarioValidar.nombre && element.contraseña === usuarioValidar.password);})
-
-    if(userExist){
-        console.log('Existe')
-        localStorage.setItem("UserLog", JSON.stringify(usuarioValidar))
-        window.location.href = '../index.html'
+    if (baseDeDatos === null){
+        window.location.href = '../page/new_user.html'
     }else{
-        cambiarSiNoExiste()
-        console.log('no esxiste')
+        const userExist = baseDeDatos.some((element) =>{ return (element.nombre === usuarioValidar.nombre && element.contraseña === usuarioValidar.password);})
+
+        if(userExist){
+            console.log('Existe')
+            localStorage.setItem("UserLog", JSON.stringify(usuarioValidar))
+            window.location.href = '../index.html'
+        }else{
+            cambiarSiNoExiste()
+            console.log('no esxiste')
+        }
     }
+
 })

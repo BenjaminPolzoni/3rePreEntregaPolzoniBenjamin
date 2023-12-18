@@ -1,4 +1,4 @@
-import { BBDD } from "./baseDeDatos.js";
+
 // Creamos una clase llamada UsuarioAIngresar
 class usuarioAIngresar {
     constructor(nombre, gmail, contraseña, edad, dirección) {
@@ -12,10 +12,9 @@ class usuarioAIngresar {
   
 //Funciones
 
-// Creamos una función que nos pide los datos por entrada
+// Creamos una función que nos permite guardar los datos del usuario
 function crearUsuario(nom, mail, contra, ed, altura, calle, cp) {
     
-    // Usamos la función prompt para pedir los datos al usuario y los guardamos en variables
     let nombre = nom    
     let email = mail
     let contraseña = contra
@@ -34,6 +33,16 @@ function crearUsuario(nom, mail, contra, ed, altura, calle, cp) {
     // Agregamos el objeto usuario a la BBDD
     BBDD.push(usuario);
 }
+// Cargo al usuario y lo envio al local storage
+function cargarYenviar(){
+  const {newUserName, newUserMail, newUserPassword, newUserAge, newUserAltura, newUserCalle, newUserCP} = datosUsuario
+  crearUsuario(newUserName, newUserMail, newUserPassword, newUserAge, newUserAltura, newUserCalle, newUserCP)
+
+  localStorage.setItem("BaseDeDatos", JSON.stringify(BBDD))
+  //window.location.href = './loginUser.html'
+}
+
+// El mensaje de error por si quiero crear un usuario ya ingresado 
 function cambiarSiExiste(){
   //Cambio la sombra a rojo
   const contenedorForm = document.querySelector('.contenedorLogin') 
@@ -43,8 +52,8 @@ function cambiarSiExiste(){
     tituloLog.classList.add('login_titulo_error')
 }
 
-//Guardamos el local storage
-const datosDePersonas = JSON.parse(localStorage.getItem('BaseDeDatos'))
+
+let BBDD = JSON.parse(localStorage.getItem('BaseDeDatos')) || 'falses'
 
 const datosUsuario = {
   newUserName:'',
@@ -58,7 +67,6 @@ const datosUsuario = {
 
 
 //Agarro los datos de los inputs 
-
 const inputs = document.querySelectorAll('.inputs')
 inputs.forEach((elemen) =>{
   elemen.addEventListener("input", (event) =>{
@@ -70,26 +78,29 @@ inputs.forEach((elemen) =>{
   })
 })
 
+// Agarro el boton
 const botonSubir = document.querySelector('.boton')
-
 botonSubir.addEventListener('click', () =>{
   
-  const userExist = datosDePersonas.some((element) =>{ return (element.gmail === datosUsuario.newUserMail);}) || false
-  console.log(userExist)
-
-  if(!userExist){
-    const {newUserName, newUserMail, newUserPassword, newUserAge, newUserAltura, newUserCalle, newUserCP} = datosUsuario
-    crearUsuario(newUserName, newUserMail, newUserPassword, newUserAge, newUserAltura, newUserCalle, newUserCP)
-    
-    datosDePersonas.push(BBDD[BBDD.length-1])
-
-    localStorage.setItem("BaseDeDatos", JSON.stringify(datosDePersonas))
-
-    window.location.href = './loginUser.html'
+  if(BBDD == 'falses'){
+    // Si no existen datos en la BBDD ejecuto la funcion de carga
+    console.log('estoy funcionando osea que no hay nada aqui')
+    BBDD = []
+    cargarYenviar()
 
   }else{
-    console.log('este usuario ya existe')
-    cambiarSiExiste()
+      const userExist = BBDD.some((element) =>{ return (element.gmail === datosUsuario.newUserMail);}) || false
+      console.log(userExist)
+  
+      if(!userExist){
+      
+      // Si no existe ejecuto la funcion de carga
+      cargarYenviar()
+
+      }else{
+        console.log('este usuario ya existe')
+        cambiarSiExiste()
+    }
   }
 })
 
