@@ -3,14 +3,17 @@
     margin: 0; padding: 0;
     box-sizing: border-box;
 }
+p{
+    color:antiquewhite
+}
 .body{
-    background: #acb6e5; 
-    background: -webkit-linear-gradient(to right, #86fde8, #acb6e5);  
-    background: linear-gradient(to right, #86fde8, #acb6e5); 
+    background: #bdc3c7;  
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); 
 
 }
+/*Todos los estilos y elementos colocados para el login y el register*/
 .titulo{
-    
     font-size: 72px;
     color: rgb(24, 27, 17);
     text-align: center;
@@ -91,4 +94,54 @@
     background-color: #acb6e5;
 }
 
+/*Todos los estilos y elementos colocados para el index*/
+.navbar{
+    overflow: hidden;
+    position: fixed; /* Fijar la barra de navegación */
+    width: 100%; /* Ocupar el ancho completo */
+    top: 0; /* Pegar en la parte superior */
+    z-index: 1000;
+  }
+.navbar-brand{
+    font-family: 'Rajdhani', sans-serif;
+    margin-left: 0;
+}
+.container-fluid{
+    background-color: rgb(128, 22, 22);
+}
+.content {
+    margin-top: 79px; /* Espacio para la barra de navegación fija */
+    padding: 46px;
+  }
+.productos{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5px 10px;
+    padding: 5px;
+}
+.card{
+    margin:10px 10px;
+    width: 270px ;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color: rgb(128, 22, 22)
 
+}
+.img-carta{
+    max-width: 250px;
+    max-height: 200px;
+}
+.card-title{
+    background: #bdc3c7;
+    padding: 5px;
+    font-family: 'Comfortaa', sans-serif;
+}
+.card-text{
+    background-color: #2b2d2e;
+}
+.LogoCompra{
+    font-size: 55px;
+    color:antiquewhite
+}

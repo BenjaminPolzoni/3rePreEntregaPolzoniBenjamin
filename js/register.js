@@ -39,7 +39,7 @@ function cargarYenviar(){
   crearUsuario(newUserName, newUserMail, newUserPassword, newUserAge, newUserAltura, newUserCalle, newUserCP)
 
   localStorage.setItem("BaseDeDatos", JSON.stringify(BBDD))
-  //window.location.href = './loginUser.html'
+  window.location.href = './loginUser.html'
 }
 
 // El mensaje de error por si quiero crear un usuario ya ingresado 
