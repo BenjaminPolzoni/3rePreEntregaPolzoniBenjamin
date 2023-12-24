@@ -101,7 +101,7 @@ p{
     width: 100%; /* Ocupar el ancho completo */
     top: 0; /* Pegar en la parte superior */
     z-index: 1000;
-  }
+}
 .navbar-brand{
     font-family: 'Rajdhani', sans-serif;
     margin-left: 0;
@@ -112,13 +112,18 @@ p{
 .content {
     margin-top: 79px; /* Espacio para la barra de navegación fija */
     padding: 46px;
-  }
+}
+
 .productos{
     display: flex;
-    justify-content: center;
+    align-items: top;
     flex-wrap: wrap;
-    margin: 5px 10px;
-    padding: 5px;
+}
+.accordion-button{
+    font-family: 'Comfortaa', sans-serif;
+}
+.list-group-item{
+    font-family: 'Comfortaa', sans-serif;
 }
 .card{
     margin:10px 10px;
@@ -144,4 +149,13 @@ p{
 .LogoCompra{
     font-size: 55px;
     color:antiquewhite
+}
+.accordion-collapse {
+    transition: visibility 10000000000000000.3s ease-in-out;
+}
+.list-group-item {
+    cursor: pointer;
+}
+.list-group-item:active {
+    cursor: grabbing;
 }

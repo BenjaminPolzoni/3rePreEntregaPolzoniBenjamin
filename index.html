@@ -20,8 +20,8 @@
             <p class="text-4xl pl-1">DeToUnPo</p>
           </a>
           <form class="d-flex" role="search">
-            <input class="form-control me-2 w-96" type="input" placeholder="Buscar">
-            <button class="btn btn-outline-success" type="button">Buscar</button>
+            <input class="form-control me-2 w-96 busqueda" type="input" placeholder="Buscar">
+            <button class="btn btn-outline-success boton-busqueda" type="button">Buscar</button>
           </form>
           <div class="mr-10">
             <button type="button" class='deslogear px-4'>
@@ -37,11 +37,34 @@
           </div>
         </div>
     </nav>      
-    <main class="content">
-      <div class="productos">
+    <main class="content  grid grid-cols-7">
+      <div class="accordion col-span-1 pt-3 " id="accordionExample">
+        <div class="accordion-item position-fixed">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Filtrar
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul class="list-group list-group-flush col-span-1">
+                <li class="list-group-item MostrarTodos">Mostrar Todo</li>
+                <li class="list-group-item Smartphones">Smartphones</li>
+                <li class="list-group-item Laptops">Laptops</li>
+                <li class="list-group-item Fragrancias">Fragancias</li>
+                <li class="list-group-item Skincare">Skincare</li>
+                <li class="list-group-item Comestibles">Comestibles</li>
+                <li class="list-group-item DecoracionDeHogar">Decoracion de hogar</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="productos col-span-6">
       </div>
     </main>
-    
+    <!--Los distintos scripts-->
     <script src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

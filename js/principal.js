@@ -6,11 +6,9 @@
 // funcion que lee las entradas de inpus
 function cargaInputs(elemento1, elemento2){
     elemento1.addEventListener("input", (e)=>{
-        console.log(e.target.value)
         usuarioValidar.nombre = e.target.value
     })
     elemento2.addEventListener("input", (e)=>{
-        console.log(e.target.value)
         usuarioValidar.password = e.target.value
     })
 }
