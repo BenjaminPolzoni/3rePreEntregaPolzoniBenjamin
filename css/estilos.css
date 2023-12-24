@@ -84,14 +84,8 @@ p{
     color: #86fde8 
     
 }
-.boton{
-    margin: 17px;
-    width: 5rem;
-    height: 3rem;
-    border-radius: 10px;
-    font-size: 15px;
-    
-    background-color: #acb6e5;
+.nuevaCuenta{
+    color: antiquewhite;
 }
 
 /*Todos los estilos y elementos colocados para el index*/
@@ -158,4 +152,16 @@ p{
 }
 .list-group-item:active {
     cursor: grabbing;
+}
+.carritoDeCompras{
+    background-color: aliceblue;
+}
+#RealizarCopra{
+    background-color: aliceblue;
+    color: rgb(24, 27, 17);
+    
+}
+#limpiarCarrito{
+    background-color: rgb(128, 22, 22);
+    color:antiquewhite
 }

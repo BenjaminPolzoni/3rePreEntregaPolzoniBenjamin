@@ -13,11 +13,11 @@ function pintarProductos(resultados){
         creoDiv.setAttribute("class", "flex ")
         
         creoDiv.innerHTML = `
-        <div class="card flex flex-column justify-center items-center" >
+        <div class="card flex flex-column justify-center items-center" id="${element.id}">
             <img src="${element.images[0]}" class="card-img-top img-carta" alt='${element.title}'>
             <div class="card-body backdrop-blur-md flex flex-column items-center justify-around">
                 <h5 class="card-title rounded-md w-full text-center">${element.title}</h5>
-                <p class="card-text rounded-md w-full text-center ">${element.price}</p>
+                <p class="card-text rounded-md w-full text-center">${element.price}</p>
                 <p class="card-descripion w-full text-center">${element.description}</p>
                 <a href="#" class="btn btn-info boton-sumar-carrito">sumar al carrito</a>
             </div>
@@ -54,7 +54,6 @@ function FiltrarObjetos(Datos) {
     // Recorro los filtros y muestro los objetos en base a su category
     filtros.forEach(filtro => {
         filtro.addEventListener('click', () => {
-
             // Valido que cuando toque mostrar todo, muestre todos los datos=
             if (filtro.classList.contains('MostrarTodos')) {
                 pintarProductos(Datos);
@@ -63,7 +62,6 @@ function FiltrarObjetos(Datos) {
                 // Si se hace clic en otro filtro, filtra y muestra productos correspondientes
                 let categoriaFiltro = filtro.textContent.toLowerCase();
                 let categoriaFiltrada;
-                
                 switch (categoriaFiltro) {
                     case 'fragancias':
                         categoriaFiltrada = 'fragrances';
@@ -80,12 +78,12 @@ function FiltrarObjetos(Datos) {
                         // Si no hay una categoría en el switch, usar la categoría original
                         categoriaFiltrada = categoriaFiltro;
                 }
-
                 const datosFiltrados = Datos.filter(element => {
                     return element.category.toLowerCase() === categoriaFiltrada;
                 });
 
                 limpiarYFiltrar(datosFiltrados)
+                sumarCarrito(Datos)
             }
         })
     })
@@ -104,16 +102,57 @@ function FiltrarObjetos(Datos) {
     })
 }
 
-function sumarCarrito(){
-    const botonSumar = document.querySelectorAll('.boton-sumar-carrito')
+function sumarCarrito(productoCarrito) {
+    console.log(productoCarrito)
+    const botonSumar = document.querySelectorAll('.boton-sumar-carrito');
 
     botonSumar.forEach(element => {
-        element.addEventListener('click', e=>{
-            console.log('soy un boton y funciono ')
+        element.addEventListener('click', e => {
+            const productoCard = e.target.closest('.card');
+            const productId = productoCard.id;
 
-        })
-    })
+            // Obtener el producto usando el productId
+            const productoSeleccionado = productoCarrito.find(producto => {
+                return producto.id == productId;
+            });
+
+            // Obtener el carrito actual del local storage o inicializarlo si no existe
+            const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            const productoEnCarrito = carritoActual.find(producto => producto.id == productId);
+
+            if (!productoEnCarrito) {
+                // Si el producto no está en el carrito, lo sumo y le paso un nuevo atributo que me muestra la cantidad de veces que lo he agregado
+                carritoActual.push({ ...productoSeleccionado, cantidad: 1 });
+            } else {
+                // Si el producto ya está en el carrito, incrementar la cantidad de veces que lop agrego
+                productoEnCarrito.cantidad++;
+            }
+ 
+            // Guardo en el local storage
+            localStorage.setItem('carrito', JSON.stringify(carritoActual));
+            console.log('Producto agregado al carrito', productId);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Producto en el carrito!!",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              
+        });
+    });
 }
+
+function productoSeleccionadoEnCarrito(productId) {
+    // Obtener el carrito actual del local storage o inicializarlo si no existe
+    const carritoActual = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Verificar si el producto ya está en el carrito
+    return carritoActual.some(producto => producto.id == productId);
+}
+
+
 async function TraerApi(){
     //Guardamos los datos de forma sincronica
     const responde = await fetch('https://dummyjson.com/products/')
@@ -121,7 +160,7 @@ async function TraerApi(){
     console.log(data.products)
     pintarProductos(data.products)
     FiltrarObjetos(data.products)
-    sumarCarrito()
+    sumarCarrito(data.products)
 }
 
 deslogear()

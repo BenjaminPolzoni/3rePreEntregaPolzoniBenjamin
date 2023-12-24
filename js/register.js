@@ -70,10 +70,7 @@ const datosUsuario = {
 const inputs = document.querySelectorAll('.inputs')
 inputs.forEach((elemen) =>{
   elemen.addEventListener("input", (event) =>{
-    
-    //Destructoro el e.target.value [Si, me copie un poco del profe :( ]
     const {id, value} = event.target
-    // accedo a los objetos sin repetir el codigo
     datosUsuario[id] = value
   })
 })
@@ -87,16 +84,12 @@ botonSubir.addEventListener('click', () =>{
     console.log('estoy funcionando osea que no hay nada aqui')
     BBDD = []
     cargarYenviar()
-
   }else{
       const userExist = BBDD.some((element) =>{ return (element.gmail === datosUsuario.newUserMail);}) || false
       console.log(userExist)
-  
       if(!userExist){
-      
       // Si no existe ejecuto la funcion de carga
       cargarYenviar()
-
       }else{
         console.log('este usuario ya existe')
         cambiarSiExiste()
